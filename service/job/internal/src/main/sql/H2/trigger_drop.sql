@@ -12,6 +12,8 @@
 
 DROP TABLE IF EXISTS schdl_trigger;
 DROP TABLE IF EXISTS schdl_trigger_properties;
+DROP TABLE IF EXISTS schdl_trigger_definition;
+DROP TABLE IF EXISTS schdl_trigger_definition_properties;
 
 DROP TABLE IF EXISTS schdl_qrtz_blob_triggers;
 DROP TABLE IF EXISTS schdl_qrtz_calendars;
