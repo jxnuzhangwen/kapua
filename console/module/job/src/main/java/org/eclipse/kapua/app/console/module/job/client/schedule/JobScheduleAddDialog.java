@@ -157,6 +157,7 @@ public class JobScheduleAddDialog extends EntityAddEditDialog {
         startsOn.getDatePicker().addListener(Events.Select, listener);
         startsOn.setValue(new Date());
         startsOn.setMinValue(new Date());
+        startsOn.getMessages().setMinText(JOB_MSGS.dialogAddScheduleStartsOnDateMin(DateTimeFormat.getFormat("dd/MM/yyyy").format(startsOn.getMinValue())));
 
         startsOnTime.setFormat(DateTimeFormat.getFormat("HH:mm"));
         startsOnTime.setAllowBlank(false);
@@ -189,6 +190,7 @@ public class JobScheduleAddDialog extends EntityAddEditDialog {
         endsOn.setValidator(new BeforeDateValidator(startsOn));
         endsOn.getDatePicker().addListener(Events.Select, listener);
         endsOn.setMinValue(new Date());
+        endsOn.getMessages().setMinText(JOB_MSGS.dialogAddScheduleStartsOnDateMin(DateTimeFormat.getFormat("dd/MM/yyyy").format(endsOn.getMinValue())));
 
         endsOnTime.setFormat(DateTimeFormat.getFormat("HH:mm"));
         endsOnTime.setEditable(false);
@@ -270,11 +272,11 @@ public class JobScheduleAddDialog extends EntityAddEditDialog {
             cronExpression.setFieldLabel("* " + JOB_MSGS.dialogAddScheduleCronScheduleLabel());
             cronExpression.setAllowBlank(false);
             cronExpression.setMaxLength(255);
-            cronExpression.setToolTip(JOB_MSGS.dialogAddScheduleCronScheduleTooltip());
+            cronExpression.setToolTip(JOB_MSGS.dialogAddScheduleCronTooltip());
             triggerPropertiesPanel.add(cronExpression);
 
             cronExpressionLabel = new LabelField();
-            cronExpressionLabel.setValue(JOB_MSGS.dialogAddScheduleCronScheduleDescriptionLabel());
+            cronExpressionLabel.setValue(JOB_MSGS.dialogAddScheduleCronDescriptionLabel());
             cronExpressionLabel.setStyleAttribute("margin-top", "-5px");
             cronExpressionLabel.setStyleAttribute("color", "gray");
             cronExpressionLabel.setStyleAttribute("font-size", "10px");
@@ -286,7 +288,7 @@ public class JobScheduleAddDialog extends EntityAddEditDialog {
                     GWT_TRIGGER_SERVICE.validateCronExpression(cronExpression.getValue(), new AsyncCallback<Boolean>() {
                         @Override
                         public void onFailure(Throwable caught) {
-                            ConsoleInfo.display(MSGS.popupError(), JOB_MSGS.unableToValidateCronExpression());
+                            ConsoleInfo.display(MSGS.popupError(), JOB_MSGS.dialogAddScheduleCronUnableToValidate());
                             cronExpression.markInvalid(VAL_MSGS.invalidCronExpression());
                         }
 
